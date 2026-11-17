@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Příprava na přijímací zkoušky</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Příprava na přijímací zkoušky</h1>
+</header>
+
+<!-- VÝBĚR ROČNÍKU -->
+<div id="terminyView">
+    <div class="descriptionText">
+        <h2>Výběr ročníku:</h2>
+        <select id="vyberRoku"></select>
+    </div>
+    <table class="vyberTerminu">
+        <tr id="2026">
+            <td><button class="vyberBtn">První termín</button></td>
+            <td><button class="vyberBtn">Druhý termín</button></td>
+            <td><button class="vyberBtn">První náhradní termín</button></td>
+            <td><button class="vyberBtn">Druhý náhradní termín</button></td>
+            <td><button class="vyberBtn">Další testy</button></td>
+        </tr>
+        <tr id="2026dalsi">
+            <td><button class="vyberBtnZvyraznene">Přijímačky nanečisto</button></td>
+        </tr>
+
+        <tr id="2025">
+            <td><button class="vyberBtn">První termín</button></td>
+            <td><button class="vyberBtn">Druhý termín</button></td>
+            <td><button class="vyberBtn">První náhradní termín</button></td>
+            <td><button class="vyberBtn">Druhý náhradní termín</button></td>
+            <td><button class="vyberBtn">Další testy</button></td>
+        </tr>
+        <tr id="2025dalsi">
+            <td><button class="vyberBtnZvyraznene">Přijímačky nanečisto</button></td>
+        </tr>
+
+        <tr id="2024">
+            <td><button class="vyberBtn">První termín</button></td>
+            <td><button class="vyberBtn">Druhý termín</button></td>
+            <td><button class="vyberBtn">První náhradní termín</button></td>
+            <td><button class="vyberBtn">Druhý náhradní termín</button></td>
+            <td><button class="vyberBtn">Další testy</button></td>
+        </tr>
+        <tr id="2024dalsi">
+            <td><button class="vyberBtnZvyraznene">Přijímačky nanečisto</button></td>
+        </tr>
+
+        <tr id="2023">
+            <td><button class="vyberBtn">První termín</button></td>
+            <td><button class="vyberBtn">Druhý termín</button></td>
+            <td><button class="vyberBtn">První náhradní termín</button></td>
+            <td><button class="vyberBtn">Druhý náhradní termín</button></td>
+            <td><button class="vyberBtn">Další testy</button></td>
+        </tr>
+        <tr id="2023dalsi">
+            <td><button class="vyberBtnZvyraznene">Přijímačky nanečisto</button></td>
+        </tr>
+    </table>
+</div>
+
+<!-- VÝBĚR TÉMAT -->
+<div id="temataView" hidden>
+    <div class="descriptionText">
+        <h2>Výběr témata</h2>
+    </div>
+
+    <table class="vyberTerminu">
+        <tr>
+            <td><button class="vyberBtn">Číslo a proměnná</button></td>
+            <td><button class="vyberBtn">Závislosti a vztahy</button></td>
+            <td><button class="vyberBtn">Geometrie</button></td>
+            <td><button class="vyberBtn">Data a statistika</button></td>
+            <td><button class="vyberBtn">Výrazy</button></td>
+        </tr>
+        <tr>
+            <td><button class="vyberBtn">Rovnice</button></td>
+            <td><button class="vyberBtn">Procenta</button></td>
+            <td><button class="vyberBtn">Slovní úlohy</button></td>
+        </tr>
+    </table>
+</div>
+
+<!-- PŘEPÍNAČ MUSÍ BÝT MIMO OBA POHLEDY -->
+<button class="vyberTemata" id="prepinac" type="button">
+    Nebo vyberte téma
+</button>
+
+<button class="spustitBtn">Spustit test</button>
+
+<script>
+const vyberRoku = document.getElementById("vyberRoku");
+
+const radky = Array.from(
+    document.querySelectorAll("#terminyView table.vyberTerminu tr[id]")
+);
+
+const roky = radky
+    .map(radek => radek.id)
+    .filter(id => !id.endsWith("dalsi"));
+
+// Naplnění nabídky roků
+roky.forEach(rok => {
+    const option = document.createElement("option");
+    option.value = rok;
+    option.textContent = rok;
+    vyberRoku.appendChild(option);
+});
+
+// Zobrazení vybraného roku
+function zobrazRok() {
+    const vybranyRok = vyberRoku.value;
+
+    radky.forEach(radek => {
+        radek.style.display = "none";
+    });
+
+    document.getElementById(vybranyRok).style.display = "table-row";
+}
+
+vyberRoku.addEventListener("change", zobrazRok);
+
+// Rozbalování dalších testů
+roky.forEach(rok => {
+    const hlavniRadek = document.getElementById(rok);
+    const dalsiRadek = document.getElementById(rok + "dalsi");
+
+    if (!dalsiRadek) return;
+
+    const tlacitko = hlavniRadek.querySelector("td:last-child button");
+
+    tlacitko.addEventListener("click", () => {
+        const zobrazeno = dalsiRadek.style.display === "table-row";
+
+        dalsiRadek.style.display = zobrazeno ? "none" : "table-row";
+    });
+});
+
+// Přepínání mezi ročníky a tématy
+const terminy = document.getElementById("terminyView");
+const temata = document.getElementById("temataView");
+const prepinac = document.getElementById("prepinac");
+
+prepinac.addEventListener("click", () => {
+    const zobrazitTemata = temata.hidden;
+
+    terminy.hidden = zobrazitTemata;
+    temata.hidden = !zobrazitTemata;
+
+    prepinac.textContent = zobrazitTemata
+        ? "Nebo vyberte ročník"
+        : "Nebo vyberte téma";
+});
+
+// Výchozí zobrazení
+zobrazRok();
+</script>
+
+</body>
+</html>

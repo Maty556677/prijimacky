@@ -1,0 +1,188 @@
+
+:root {
+    --bg-color: #fff;
+    --text-color: #222;
+    --text-muted: #777;
+    --card-bg: #f4f4f4;
+    --card-border: #ddd;
+    --btn-bg: #2196F3;
+    --btn-hover-bg: #0b7dda;
+    --btn-text: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 16px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 26px;
+    margin: 16px 0 24px;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 24px 0 12px;
+}
+
+dl {
+    margin: 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+dt:first-child {
+    margin-top: 0;
+}
+
+dd {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Tabulky */
+table {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 7px;
+    border-spacing: 0;
+}
+
+td {
+    padding: 10px 12px;
+}
+
+td:first-child {
+    width: 38%;
+    font-weight: bold;
+}
+
+/* Výběr ročníku */
+.descriptionText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.descriptionText h2 {
+    margin: 0;
+}
+
+#vyberRoku {
+    width: 100px;
+    height: 40px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font: 18px Verdana, sans-serif;
+    cursor: pointer;
+}
+
+/* Výběr termínů */
+.vyberTerminu {
+    width: 140%;
+    margin: 0 -20%;
+    table-layout: fixed;
+    border-spacing: 4px;
+}
+
+.vyberTerminu td {
+    width: 20%;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+/* Tlačítka */
+button {
+    width: 100%;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 5px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font: 15px Verdana, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--btn-hover-bg);
+}
+
+.vyberBtn,
+.vyberBtnZvyraznene {
+    width: 100%;
+    min-width: 0;
+    height: 50px;
+    padding: 6px 3px;
+    font: 15px Verdana, sans-serif;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.uvod {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.spustitBtn {
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 32px);
+    max-width: 608px;
+    height: 50px;
+
+    padding: 6px 3px;
+    font: 15px Verdana, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+
+.vyberBtnZvyraznene {
+    background: rgb(255, 195, 64);
+    color: black;
+}
+
+.vyberBtnZvyraznene:hover {
+    background: rgb(255, 207, 104);
+}
+
+.vyberTemata {
+    width: 200px;
+    height: 40px;
+    padding: 6px 3px;
+    font: 15px Verdana, sans-serif;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    background: rgb(61, 61, 61);
+    color: white;
+    display: block;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.vyberTemata:hover {
+    background: rgb(90, 90, 90);
+}
